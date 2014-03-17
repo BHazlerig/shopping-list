@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <title>My Shopping List</title>
+      <link href='http://fonts.googleapis.com/css?family=Exo' rel='stylesheet' type='text/css'>
+     
+      <link rel="stylesheet" href="css/style.css">
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  </head>
+  <body>
+      <div id="container"> 
+          <h1>My Shopping List</h1>
+           <div class="items-area">
+             <input id="input-item" maxlength="35" placeholder="Add an item.." autofocus/><button id="btn">+</button>
+             <hr/>
+           </div>  
+               <div class="to-buy-list">
+                <h2>Things to Buy:</h2>
+                 <ul class="list-items"></ul>
+              </div>
+              <div class="cart-items">
+                <h2>In My Cart:</h2>
+                 <ol class="bought-items"></ol>
+              </div>  
+             
+           </div>
+
+      </div>
+
+
+  <script>
+   $(document).ready(function () {
+     $('#btn').click(function(){
+        var listItem = $('#input-item').val();
+        if (listItem == 0) {
+          alert('Please enter an item to continue')
+        }
+        else {
+        $('.list-items').prepend('<li>' + listItem + '<button class="delete" id="add">Got It</button></li>');
+         $('#input-item').val('');
+           }
+          $(".delete").click(function () {
+           $(this).parent('li').fadeOut("slow" , function () {
+            $('.bought-items').prepend('<li>' + listItem + '<button class="btn-delete">X</button></li>');
+             $(this).remove();
+           
+        
+            $(".btn-delete").click(function () {
+              $(this).parent('li').fadeOut("slow");
+              }); 
+            });
+         });    
+      });
+   });
+  </script> 
+</body>
+</html>
